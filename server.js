@@ -5,13 +5,12 @@ const express = require("express");
 const PORT = 4000;
 
 const app = express();
+app.use(cors());
 
 const getNotes = (req, res) => {
   const filepath = path.join(__dirname, "/db/db.json");
-  console.log(filepath);
   const notes = fs.readFileSync(filepath, "utf-8");
-  console.log(notes);
-  res.send("Hello World!");
+  res.json(JSON.parse(notes));
 };
 
 app.get("/api/notes", getNotes);

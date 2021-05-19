@@ -3,16 +3,17 @@ const path = require("path");
 const express = require("express");
 const cors = require("cors");
 
+const htmlRoutes = require("./routes/htmlRoutes");
+
 const PORT = 4000;
 
 const app = express();
 app.use(cors());
-
-const getNotes = (req, res) => {
-  const filepath = path.join(__dirname, "/db/db.json");
-  const notes = fs.readFileSync(filepath, "utf-8");
-  res.json(JSON.parse(notes));
-};
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"));
+app.use("/", htmlRoutes);
+app.use("/api", apiRoutes);
 
 app.get("/api/notes", getNotes);
 

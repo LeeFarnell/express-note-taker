@@ -6,4 +6,10 @@ const renderNotesPage = (req, res) => {
   res.sendFile(filePath);
 };
 
-module.exports = renderNotesPage;
+const renderIndexPage = (req, res) => {
+  const filePath = staticFilePath("index");
+
+  res.sendFile(filePath);
+};
+
+module.exports = { renderNotesPage, renderIndexPage };

@@ -6,4 +6,4 @@ const getNotes = (req, res) => {
   res.json(notes);
 };
 
-module.exports = getNotes;
+module.exports = { getNotes };

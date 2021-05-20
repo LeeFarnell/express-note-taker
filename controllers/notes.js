@@ -20,4 +20,13 @@ const writeNotes = (req, res) => {
   res.json(data);
 };
 
-module.exports = { getNotes, writeNotes };
+const deleteNotes = (req, res) => {
+  const noteData = JSON.parse(getNotes);
+  const newNoteData = noteData.filter((each) => {
+    return each.id !== id;
+  });
+  writeNotes(newNoteData);
+  res.json(newNoteData);
+};
+
+module.exports = { getNotes, writeNotes, deleteNotes };

@@ -7,6 +7,7 @@ const getNotes = (req, res) => {
   const notes = getFromDb();
 
   res.json(notes);
+  return notes;
 };
 
 const writeNotes = (req, res) => {
@@ -21,11 +22,12 @@ const writeNotes = (req, res) => {
 };
 
 const deleteNotes = (req, res) => {
-  const noteData = JSON.parse(getNotes);
+  const noteData = getNotes(req, res);
+  const id = req.params.id;
   const newNoteData = noteData.filter((each) => {
     return each.id !== id;
   });
-  writeNotes(newNoteData);
+  writeToDb(newNoteData);
   res.json(newNoteData);
 };
 

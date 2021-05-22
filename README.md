@@ -19,7 +19,7 @@
 ## Installation
 
 ```
-
+git clone git@github.com:LeeFarnell/express-note-taker.git
 ```
 
 ## Usage

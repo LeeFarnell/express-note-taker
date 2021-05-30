@@ -7,13 +7,12 @@ const getNotes = (req, res) => {
   const notes = getFromDb();
 
   res.json(notes);
-  return notes;
 };
 
 const writeNotes = (req, res) => {
+  const notes = getFromDb();
   const newNote = { ...req.body, id: uuidv4() };
 
-  const notes = getFromDb();
   const data = [...notes, newNote];
 
   writeToDb(data);
@@ -22,15 +21,13 @@ const writeNotes = (req, res) => {
 };
 
 const deleteNotes = (req, res) => {
-  const noteData = getNotes(req, res);
-  const id = req.params.id;
-  const newNoteData = noteData.filter((each) => {
-    return each.id !== id;
-  });
+  const notes = getNotes(req, res);
 
-  writeToDb(newNoteData);
+  const data = notes.filter((each) => each.id !== req.params.id);
 
-  res.json(newNoteData);
+  writeToDb(data);
+
+  res.json(data);
 };
 
 module.exports = { getNotes, writeNotes, deleteNotes };

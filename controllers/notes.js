@@ -21,7 +21,7 @@ const writeNotes = (req, res) => {
 };
 
 const deleteNotes = (req, res) => {
-  const notes = getNotes(req, res);
+  const notes = getFromDb();
 
   const data = notes.filter((each) => each.id !== req.params.id);
 

@@ -1,8 +1,6 @@
 const path = require("path");
-// Static File Path for all files.
-const staticFilePath = (fileName) => {
-  const filePath = path.join(__dirname, "../public", `/${fileName}.html`);
-  return filePath;
-};
+
+const staticFilePath = (fileName) =>
+  path.join(__dirname, "../public", `/${fileName}.html`);
 
 module.exports = staticFilePath;

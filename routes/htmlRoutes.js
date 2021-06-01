@@ -1,12 +1,11 @@
 const { Router } = require("express");
 
-const { renderNotesPage, renderIndexPage } = require("../controllers/html");
+const { renderer } = require("../controllers/html");
 
 const router = Router();
 
-// Router getting the necessary functions for the app.
-router.get("/notes", renderNotesPage);
+router.get("/notes", renderer("notes"));
 
-router.get("*", renderIndexPage);
+router.get("/*", renderer("index"));
 
 module.exports = router;
